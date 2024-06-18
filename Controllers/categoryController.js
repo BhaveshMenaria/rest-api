@@ -17,7 +17,7 @@ async store(req,res,next){
     let cat;
     try {
         const {title, description} = req.body;
-        cat = await Category.create({title,description,thumbnail:"upload/category/thumbnail/"+req.file.filename,})
+        cat = await Category.create({title,description,thumbnail:"uploads/category/thumbnail/"+req.file.filename,})
     }catch (error) {
         res.status(500).json({ error: "Server error", serverError:error});
     }
@@ -26,7 +26,7 @@ async store(req,res,next){
 async delete(req,res,next){
     let cat;
     try {
-        const {id} = req.body;
+        const {id} = req.params;
         cat = await Category.findByIdAndDelete({_id :id})
     }catch (error) {
         res.status(500).json({ error: "Server error", serverError:error});
